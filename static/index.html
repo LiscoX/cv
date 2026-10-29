@@ -14,11 +14,14 @@
                     <div class="arrow">.</div>
                 </div>
             </div>
-                <div id="template">
-                    <input type="radio" name="template" id="t1">
-                    <input type="radio" name="template" id="t2">
-                    <input type="radio" name="template" id="t3">
-                </div>
+            <div id="templates">
+                        <select name="template" id="template">
+    <option value="" disabled selected>Wybierz szablon</option>
+    <option value="t1" data-img="Template1-1.png">Szablon 1</option>
+    <option value="t2" data-img="Template2-1.png">Szablon 2</option>
+    <option value="t3" data-img="Template3-1.png">Szablon 3</option>
+</select>
+            </div>
         </section>
         <section>
             <div class="apla">
@@ -26,8 +29,9 @@
                     <div class="arrow"></div>
                 </div>
             </div>
-            <input type="file" name="test" id="test">
-            <button id="testbutton" onclick="testfunct()"></button>
+            <div></div>
+            <!-- <input type="file" name="test" id="test">
+            <button id="testbutton" onclick="testfunct()"></button> -->
         </section>
         <section>
             <div class="apla">
@@ -35,6 +39,7 @@
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div></div>
         </section>
         <section>
             <div class="apla">
@@ -42,6 +47,8 @@
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div></div>
+
         </section>
         <section>
             <div class="apla">
@@ -49,6 +56,8 @@
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div></div>
+
         </section>
         <section>
             <div class="apla">
@@ -56,6 +65,8 @@
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div></div>
+
         </section>
         <section>
             <div class="apla">
@@ -63,10 +74,18 @@
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div></div>
+
         </section>
-    </main>    
-</body>
+    </main>
+    <!-- Add this right before your <script src="script.js"> tag -->
+<div id="templateModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Selected Template Preview">
+</div>
 <script src="script.js">
 
 </script>
+</body>
+
 </html>
