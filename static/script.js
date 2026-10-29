@@ -1,9 +1,14 @@
 // zeby dzialalo !! trzeba wlaczyc aplikacje serwera plikiem run.bat w folderze api
 
-
-//przykladowy fetch
-fetch("/", {
-    method: "GET"
+fetch("/info", {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name : "leos",
+        age : "16"
+    })
 }).then(response => {
     if(!response.ok) {
         throw new Error(`Error: ${response.status}`);
