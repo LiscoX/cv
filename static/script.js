@@ -1,25 +1,46 @@
 // zeby dzialalo !! trzeba wlaczyc aplikacje serwera plikiem run.bat w folderze api
 
-fetch("/info", {
-    method: "POST",
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        name : "leos",
-        age : "16"
+function ZapiszDane()
+{
+    let tytul = document.getElementById("tytul").value;
+
+    let imie = document.getElementById("nazwisko").value;
+    let dataUrodzenia = (document.getElementById("dataUrodzenia").value).toString();
+
+    let wyksztalcenie = document.getElementById("tytul").value;
+    let szkola = document.getElementById("szkola").value;
+
+    let opis = document.getElementById("opis").value;
+    let doswiadczenie = document.getElementById("doswiadczenie").value;
+
+    fetch("/saveInfo", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name : imie,
+            title : tytul,
+            birthday : dataUrodzenia,
+
+            education : wyksztalcenie,
+            school : szkola,
+
+            about : opis,
+            experience : doswiadczenie
+        })
+    }).then(response => {
+        if(!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        if(!data) {return;}
+        else {
+            console.log(data);
+        }
     })
-}).then(response => {
-    if(!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-    }
-    return response.json();
-}).then(data => {
-    if(!data) {return;}
-    else {console.log(data);}
-})
-
-
+}
 
 // Get elements
 const templateSelect = document.getElementById('template');

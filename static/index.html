@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
+    <input type="text" id="tytul" placeholder="Nazwa projektu">
+
+    <input type="text" id="nazwisko" placeholder="Imię i nazwisko"><br>
+    <input type="date" id="dataUrodzenia">
+
+    <select id="wyksztalcenie" placeholder="Wykształcenie">
+        <option value="p">Podstawowe</option>
+        <option value="s">Średnie</option>
+        <option value="w">Wyższe</option>
+    </select><br>
+    <input type="text" id="szkola" placeholder="Nazwa uczelni/szkoły">
+
+    <textarea id="opis" cols="50" rows="10" placeholder="O mnie..."></textarea><br>
+    <textarea id="doswiadczenie" cols="50" rows="10" placeholder="Doświadczenie"></textarea><br>
+    
+    <button onclick="ZapiszDane()">Zapisz</button>
+
+    <!-- <main>
         <section>
             <div class="apla">
                 <div id="1">
@@ -21,7 +38,7 @@
     <option value="t2" data-img="Template2-1.png">Szablon 2</option>
     <option value="t3" data-img="Template3-1.png">Szablon 3</option>
 </select>
-            </div>
+        </div>
         </section>
         <section>
             <div class="apla">
@@ -30,8 +47,6 @@
                 </div>
             </div>
             <div></div>
-            <!-- <input type="file" name="test" id="test">
-            <button id="testbutton" onclick="testfunct()"></button> -->
         </section>
         <section>
             <div class="apla">
@@ -77,12 +92,12 @@
             <div></div>
 
         </section>
-    </main>
-    <!-- Add this right before your <script src="script.js"> tag -->
-<div id="templateModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage" alt="Selected Template Preview">
-</div>
+    </main> -->
+    
+    <div id="templateModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Selected Template Preview">
+    </div>
 <script src="script.js">
 
 </script>
