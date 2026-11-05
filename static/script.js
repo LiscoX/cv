@@ -1,5 +1,31 @@
 // zeby dzialalo !! trzeba wlaczyc aplikacje serwera plikiem run.bat w folderze api
 
+
+function WczytajProjekty()
+{
+    let select = document.getElementById("projekty");
+
+    fetch("/getSaved", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if(!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        if(!data) {return;}
+        else {
+            select.innerHTML = "<option value='new'>(Nowy projekt)</option>";
+            data.forEach(e => {
+                select.innerHTML += "<option value='" + e + "'> " + e + " </option";
+            });
+        }
+    })
+}
+
 function ZapiszDane()
 {
     let tytul = document.getElementById("tytul").value;
@@ -42,6 +68,8 @@ function ZapiszDane()
     })
 }
 
+/* 
+
 // Get elements
 const templateSelect = document.getElementById('template');
 const modal = document.getElementById('templateModal');
@@ -70,3 +98,5 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+*/

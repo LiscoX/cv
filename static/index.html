@@ -6,18 +6,20 @@
     <title>Generator CV</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <input type="text" id="tytul" placeholder="Nazwa projektu">
+<body onload="WczytajProjekty()">
+    <select id="projekty"></select><br>
+
+    <input type="text" id="tytul" placeholder="Nazwa projektu"><br>
 
     <input type="text" id="nazwisko" placeholder="Imię i nazwisko"><br>
-    <input type="date" id="dataUrodzenia">
+    <input type="date" id="dataUrodzenia"><br>
 
     <select id="wyksztalcenie" placeholder="Wykształcenie">
         <option value="p">Podstawowe</option>
         <option value="s">Średnie</option>
         <option value="w">Wyższe</option>
     </select><br>
-    <input type="text" id="szkola" placeholder="Nazwa uczelni/szkoły">
+    <input type="text" id="szkola" placeholder="Nazwa uczelni/szkoły"><br>
 
     <textarea id="opis" cols="50" rows="10" placeholder="O mnie..."></textarea><br>
     <textarea id="doswiadczenie" cols="50" rows="10" placeholder="Doświadczenie"></textarea><br>

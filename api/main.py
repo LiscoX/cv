@@ -39,7 +39,7 @@ async def info(userInfo : UserInfo):
         json.dump(data, file)
     return "Saved your data"
 
-@app.post("/getInfo")
+@app.post("/getInfo") #bierze informacje z danego projektu
 async def getInfo(title : Title):
     with open("./saved/" + title.title + ".json", "r") as file:
         data = json.load(file)
