@@ -1,7 +1,20 @@
-// zeby dzialalo !! trzeba wlaczyc aplikacje serwera plikiem run.bat w folderze api
+// zeby dzialalo !! trzeba wlaczyc aplikacje serwera plikiem run.bat
+
+var info = {
+    tytul : document.getElementById("tytul"),
+
+    imie : document.getElementById("nazwisko"),
+    dataUrodzenia : (document.getElementById("dataUrodzenia")),
+
+    wyksztalcenie : document.getElementById("wyksztalcenie"),
+    szkola : document.getElementById("szkola"),
+
+    opis : document.getElementById("opis"),
+    doswiadczenie : document.getElementById("doswiadczenie"),
+}
 
 
-function WczytajProjekty()
+function LoadProjects()
 {
     let select = document.getElementById("projekty");
 
@@ -18,7 +31,7 @@ function WczytajProjekty()
     }).then(data => {
         if(!data) {return;}
         else {
-            select.innerHTML = "<option value='new'>(Nowy projekt)</option>";
+            select.innerHTML = "<option value='__create__new'>(Nowy projekt)</option>";
             data.forEach(e => {
                 select.innerHTML += "<option value='" + e + "'> " + e + " </option";
             });
@@ -26,34 +39,56 @@ function WczytajProjekty()
     })
 }
 
-function ZapiszDane()
+function LoadData(){
+    let projectName = document.getElementById("projekty").value;
+
+    if(projectName == "__create__new"){ return; }
+
+    fetch("/getInfo", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title : projectName,
+        })
+    }).then(response => {
+        if(!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        if(!data) {return;}
+        else {
+            info.tytul.value = projectName;
+
+            info.imie.value = data["name"];
+            info.dataUrodzenia.value = data["birthday"];
+            info.wyksztalcenie.value = data["education"];
+            info.szkola.value = data["school"];
+            info.opis.value = data["about"];
+            info.doswiadczenie.value = data["experience"];
+        }
+    })
+}
+
+function SaveData()
 {
-    let tytul = document.getElementById("tytul").value;
-
-    let imie = document.getElementById("nazwisko").value;
-    let dataUrodzenia = (document.getElementById("dataUrodzenia").value).toString();
-
-    let wyksztalcenie = document.getElementById("tytul").value;
-    let szkola = document.getElementById("szkola").value;
-
-    let opis = document.getElementById("opis").value;
-    let doswiadczenie = document.getElementById("doswiadczenie").value;
-
     fetch("/saveInfo", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name : imie,
-            title : tytul,
-            birthday : dataUrodzenia,
+            name : info.imie.value,
+            title : info.tytul.value,
+            birthday : info.dataUrodzenia.value,
 
-            education : wyksztalcenie,
-            school : szkola,
+            education : info.wyksztalcenie.value,
+            school : info.szkola.value,
 
-            about : opis,
-            experience : doswiadczenie
+            about : info.opis.value,
+            experience : info.doswiadczenie.value
         })
     }).then(response => {
         if(!response.ok) {

@@ -6,8 +6,10 @@
     <title>Generator CV</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="WczytajProjekty()">
-    <select id="projekty"></select><br>
+<body onload="LoadProjects()">
+    <select id="projekty" onchange="LoadData()"></select>
+    <label for="projekty">Wybierz zapisany projekt z listy</label>
+    <br>
 
     <input type="text" id="tytul" placeholder="Nazwa projektu"><br>
 
@@ -24,7 +26,7 @@
     <textarea id="opis" cols="50" rows="10" placeholder="O mnie..."></textarea><br>
     <textarea id="doswiadczenie" cols="50" rows="10" placeholder="Doświadczenie"></textarea><br>
     
-    <button onclick="ZapiszDane()">Zapisz</button>
+    <button onclick="SaveData()">Zapisz</button>
 
     <!-- <main>
         <section>
