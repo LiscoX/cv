@@ -4,6 +4,7 @@ var info = {
     tytul : document.getElementById("tytul"),
 
     imie : document.getElementById("nazwisko"),
+    tel : document.getElementById("telefon"),
     dataUrodzenia : (document.getElementById("dataUrodzenia")),
 
     wyksztalcenie : document.getElementById("wyksztalcenie"),
@@ -61,8 +62,9 @@ function LoadData(){
         if(!data) {return;}
         else {
             info.tytul.value = projectName;
-
+            
             info.imie.value = data["name"];
+            info.imie.tel = data["phone"];
             info.dataUrodzenia.value = data["birthday"];
             info.wyksztalcenie.value = data["education"];
             info.szkola.value = data["school"];
@@ -82,6 +84,7 @@ function SaveData()
         body: JSON.stringify({
             name : info.imie.value,
             title : info.tytul.value,
+            phone : info.tel.value,
             birthday : info.dataUrodzenia.value,
 
             education : info.wyksztalcenie.value,

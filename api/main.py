@@ -8,6 +8,7 @@ class UserInfo(BaseModel):
     title : str
 
     name : str
+    phone : str
     birthday : str
 
     education : str
@@ -30,6 +31,7 @@ async def info(userInfo : UserInfo):
     with open("./saved/" + userInfo.title + ".json", "w") as file:
         data = {
             "name" : userInfo.name,
+            "phone" : userInfo.phone,
             "birthday" : userInfo.birthday,
             "education" : userInfo.education,
             "school" : userInfo.school,
