@@ -12,6 +12,9 @@ var info = {
 
     opis : document.getElementById("opis"),
     doswiadczenie : document.getElementById("doswiadczenie"),
+    
+    linkedin : document.getElementById("linkedin"),
+    github : document.getElementById("github")
 }
 
 
@@ -80,6 +83,8 @@ function LoadData(){
             info.szkola.value = data["school"];
             info.opis.value = data["about"];
             info.doswiadczenie.value = data["experience"];
+            info.github.value = data["github"];
+            info.linkedin.value = data["linkedin"];
         }
     })
 }
@@ -101,7 +106,10 @@ async function SaveData()
             school : info.szkola.value,
 
             about : info.opis.value,
-            experience : info.doswiadczenie.value
+            experience : info.doswiadczenie.value,
+
+            linkedin : info.linkedin.value,
+            github : info.github.value
         })
     })
 

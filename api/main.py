@@ -23,6 +23,9 @@ class UserInfo(BaseModel):
     about : str
     experience : str
 
+    linkedin : str
+    github : str
+
 class Title(BaseModel):
     title : str
 
@@ -84,7 +87,9 @@ async def info(userInfo : UserInfo):
         "education" : userInfo.education,
         "school" : userInfo.school,
         "about" : userInfo.about,
-        "experience" : userInfo.experience
+        "experience" : userInfo.experience,
+        "github" : userInfo.github,
+        "linkedin" : userInfo.linkedin
     }
 
     if projectFile.exists():
