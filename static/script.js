@@ -40,6 +40,16 @@ function LoadProjects()
     })
 }
 
+function PrintDocument()
+{
+    console.log(info.tytul.value);
+    if(info.tytul.value == ""){
+        alert("Uzupełnij pole tytułu")
+        return;
+    }
+    window.location.href = "./templates/template1.html?project=" + info.tytul.value;
+}
+
 function LoadData(){
     let projectName = document.getElementById("projekty").value;
 
@@ -74,9 +84,9 @@ function LoadData(){
     })
 }
 
-function SaveData()
+async function SaveData()
 {
-    fetch("/saveInfo", {
+    const saveResponse = await fetch("/saveInfo", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -93,48 +103,27 @@ function SaveData()
             about : info.opis.value,
             experience : info.doswiadczenie.value
         })
-    }).then(response => {
-        if(!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        return response.json();
-    }).then(data => {
-        if(!data) {return;}
-        else {
-            console.log(data);
-        }
     })
-}
 
-/* 
-
-// Get elements
-const templateSelect = document.getElementById('template');
-const modal = document.getElementById('templateModal');
-const modalImg = document.getElementById('modalImage');
-const closeBtn = document.getElementsByClassName('close')[0];
-
-// Show modal when a template is selected
-templateSelect.addEventListener('change', function() {
-    const selectedOption = this.options[this.selectedIndex];
-    const imgSrc = selectedOption.getAttribute('data-img');
-    
-    if (imgSrc) {
-        modal.style.display = "block";
-        modalImg.src = imgSrc;
+    if(!saveResponse.ok) {
+        throw new Error(`Error: ${saveResponse.status}`);
     }
-});
 
-// Close modal when clicking the "X" button
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+    const picture = document.getElementById("file").files[0];
+    if(!picture) {
+        return;
+    }
 
-// Close modal when clicking anywhere outside the image
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    const formData = new FormData();
+    formData.append("picture", picture);
+    formData.append("project", info.tytul.value);
+
+    const uploadResponse = await fetch("/uploadNewPic", {
+        method: "POST",
+        body: formData
+    })
+
+    if(!uploadResponse.ok) {
+        throw new Error(`Error: ${uploadResponse.status}`);
     }
 }
-
-*/
